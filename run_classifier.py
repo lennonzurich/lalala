@@ -213,9 +213,11 @@ class selfProcessor(DataProcessor):
     for doc in list(data):
       guid = 'train-%s'%doc
       text_a = tokenization.convert_to_unicode(data[doc]['claim'])
-      text_b = tokenization.convert_to_unicode(' '.join(data[doc]['sent']))
-      label = tokenization.convert_to_unicode(data[doc]['label'])
-      examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
+      if not data[doc]['sent']:
+          for sent in data[doc]['sent']:
+            text_b = tokenization.convert_to_unicode(sent)
+            label = tokenization.convert_to_unicode(data[doc]['label'])
+            examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
     return examples 
 
   def get_dev_examples(self, data_dir):
@@ -226,9 +228,11 @@ class selfProcessor(DataProcessor):
     for doc in list(data):
       guid = 'dev-%s'%doc
       text_a = tokenization.convert_to_unicode(data[doc]['claim'])
-      text_b = tokenization.convert_to_unicode(' '.join(data[doc]['sent']))
-      label = tokenization.convert_to_unicode(data[doc]['label'])
-      examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
+      if not data[doc]['sent']:
+          for sent in data[doc]['sent']:
+            text_b = tokenization.convert_to_unicode(sent)
+            label = tokenization.convert_to_unicode(data[doc]['label'])
+            examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
     return examples 
     
   def get_test_examples(self, data_dir):
