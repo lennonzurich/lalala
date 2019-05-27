@@ -207,6 +207,7 @@ class DataProcessor(object):
 class selfProcessor(DataProcessor):
   def get_train_examples(self, data_dir):
     file_path = os.path.join(data_dir, 'norm_train.json')
+    examples = []
     with open(file_path, 'r') as f:
       data = json.load(f)
     for doc in list(data):
@@ -219,6 +220,7 @@ class selfProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     file_path = os.path.join(data_dir, 'norm_dev_1.json')
+    examples = []
     with open(file_path, 'r') as f:
       data = json.load(f)
     for doc in list(data):
