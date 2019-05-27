@@ -213,7 +213,7 @@ class selfProcessor(DataProcessor):
     for doc in list(data):
       guid = 'train-%s'%doc
       text_a = tokenization.convert_to_unicode(data[doc]['claim'])
-      text_b = tokenization.convert_to_unicode(data[doc]['sent'])
+      text_b = tokenization.convert_to_unicode(' '.join(data[doc]['sent']))
       label = tokenization.convert_to_unicode(data[doc]['label'])
       examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
     return examples 
@@ -226,7 +226,7 @@ class selfProcessor(DataProcessor):
     for doc in list(data):
       guid = 'dev-%s'%doc
       text_a = tokenization.convert_to_unicode(data[doc]['claim'])
-      text_b = tokenization.convert_to_unicode(data[doc]['sent'])
+      text_b = tokenization.convert_to_unicode(' '.join(data[doc]['sent']))
       label = tokenization.convert_to_unicode(data[doc]['label'])
       examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
     return examples 
