@@ -226,7 +226,7 @@ class selfProcessor(DataProcessor):
     with open(file_path, 'r') as f:
       data = json.load(f)
     for doc in list(data):
-      guid = 'train-%s'%doc
+      guid = 'dev-%s'%doc
       text_a = tokenization.convert_to_unicode(data[doc]['claim'])
       label = tokenization.convert_to_unicode(data[doc]['label'])
       for sent in data[doc]['sent']:
@@ -237,7 +237,18 @@ class selfProcessor(DataProcessor):
     
   def get_test_examples(self, data_dir):
     file_path = os.path.join(data_dir, 'test.json')
-
+    examples = []
+    with open(file_path, 'r') as f:
+      data = json.load(f)
+    for doc in list(data):
+      guid = 'test-%s'%doc
+      text_a = tokenization.convert_to_unicode(data[doc]['claim'])
+      label = tokenization.convert_to_unicode(data[doc]['label'])
+      for sent in data[doc]['sent']:
+        if sent:
+          text_b = tokenization.convert_to_unicode(sent)
+          examples.append(InputExample(guid, text_a = text_a, text_b = text_b, label = label))
+    return examples 
 
 
   def get_labels(self):
