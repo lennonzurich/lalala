@@ -236,7 +236,7 @@ class selfProcessor(DataProcessor):
     return examples 
     
   def get_test_examples(self, data_dir):
-    file_path = os.path.join(data_dir, 'test_label_sent.json')
+    file_path = os.path.join(data_dir, 'test_label_2.json')
     examples = []
     with open(file_path, 'r') as f:
       data = json.load(f)
