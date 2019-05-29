@@ -203,7 +203,7 @@ class DataProcessor(object):
       for line in reader:
         lines.append(line)
       return lines
-# 自己写的      
+# wrote by ourselves      
 class selfProcessor(DataProcessor):
   def get_train_examples(self, data_dir):
     file_path = os.path.join(data_dir, 'norm_train_random.json')
@@ -236,7 +236,7 @@ class selfProcessor(DataProcessor):
     return examples 
     
   def get_test_examples(self, data_dir):
-    file_path = os.path.join(data_dir, 'norm_dev_random.json')
+    file_path = os.path.join(data_dir, 'test_label_sent_3.json')
     examples = []
     with open(file_path, 'r') as f:
       data = json.load(f)
@@ -252,7 +252,7 @@ class selfProcessor(DataProcessor):
 
   def get_labels(self):
     return ['SUPPORTS','REFUTES','NOT ENOUGH INFO']
-# 结束
+#  end 
 
 class XnliProcessor(DataProcessor):
   """Processor for the XNLI data set."""
